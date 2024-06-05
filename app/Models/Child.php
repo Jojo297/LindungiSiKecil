@@ -20,4 +20,9 @@ class Child extends Model
     {
         return $this->belongsTo(Parents::class, 'id_parent');
     }
+    public function schedules()
+    {
+        return $this->belongsToMany(Schedule::class, 'child_schedule', 'id_child', 'id_schedule')
+            ->withPivot('status', 'created_at', 'updated_at');
+    }
 }
