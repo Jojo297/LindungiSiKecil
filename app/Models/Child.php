@@ -26,8 +26,11 @@ class Child extends Model
         return $this->belongsToMany(Schedule::class, 'child_schedule', 'id_child', 'id_schedule')
             ->withPivot('status', 'created_at', 'updated_at');
     }
+<<<<<<< HEAD
     public function growths()
     {
         return $this->hasMany(ChildGrowth::class, 'id_child');
     }
+=======
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
 }

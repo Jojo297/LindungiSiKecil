@@ -292,7 +292,11 @@
                                             </div>
                                             <!-- Modal body -->
                                             <div class="p-4 md:p-5">
+<<<<<<< HEAD
                                                 <form id="schedule-form1"
+=======
+                                                <form id=""
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                     action="/admin/schedules/edit/{{ $schedule->id_schedule }}"
                                                     class="" method="POST">
                                                     @csrf @method('POST')
@@ -323,7 +327,11 @@
                                                         {{-- input month selesai --}}
 
                                                         {{-- eror year --}}
+<<<<<<< HEAD
                                                         <div id="alert-4" class="col-span-1 mt-3"
+=======
+                                                        <div id="alert-edit-1" class="col-span-1 mt-3"
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                             style="display: none;">
                                                             <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                                                 role="alert">
@@ -335,14 +343,22 @@
                                                                 </svg>
                                                                 <span class="sr-only">Info</span>
                                                                 <div class="ms-3 text-sm font-medium"
+<<<<<<< HEAD
                                                                     id="year1-error-message">
+=======
+                                                                    id="year-edit-error-message">
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         {{-- eror year selesai --}}
 
                                                         {{-- eror month --}}
+<<<<<<< HEAD
                                                         <div id="alert-5" class="col-span-1 ml-2 mt-3"
+=======
+                                                        <div id="alert-edit-2" class="col-span-1 ml-2 mt-3"
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                             style="display: none;">
                                                             <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                                                 role="alert">
@@ -354,7 +370,11 @@
                                                                 </svg>
                                                                 <span class="sr-only">Info</span>
                                                                 <div class="ms-3 text-sm font-medium"
+<<<<<<< HEAD
                                                                     id="month1-error-message">
+=======
+                                                                    id="month-edit-error-message">
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -379,7 +399,11 @@
                                                     {{-- input vaksin selesai --}}
 
                                                     {{-- eror vaksin --}}
+<<<<<<< HEAD
                                                     <div id="alert-6" class="col-span-1 ml-2 mt-3"
+=======
+                                                    <div id="alert-edit-3" class="col-span-1 ml-2 mt-3"
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                         style="display: none;">
                                                         <div class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                                             role="alert">
@@ -391,7 +415,11 @@
                                                             </svg>
                                                             <span class="sr-only">Info</span>
                                                             <div class="ms-3 text-sm font-medium"
+<<<<<<< HEAD
                                                                 id="vaccins1-error-message">
+=======
+                                                                id="vaccins-edit-error-message">
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                                                             </div>
                                                         </div>
                                                     </div>

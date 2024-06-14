@@ -4,7 +4,10 @@ namespace App\Console\Commands;
 
 use App\Models\ChildSchedule;
 use DateTime;
+<<<<<<< HEAD
 use DateTimeZone;
+=======
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
@@ -30,7 +33,11 @@ class SendWhatsAppNotification extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
         $childSchedules = ChildSchedule::with(['child', 'schedule'])->where('status', 'belum')->get();
+=======
+        $childSchedules = ChildSchedule::with(['child', 'schedule'])->get();
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
 
         foreach ($childSchedules as $childSchedule) {
             $child = $childSchedule->child;
@@ -39,6 +46,7 @@ class SendWhatsAppNotification extends Command
             // Hitung tanggal imunisasi berdasarkan schedule
             $immunizationDate = (new DateTime($child->date_of_birth))
                 ->modify("+{$schedule->year} years")
+<<<<<<< HEAD
                 ->modify("+{$schedule->month} months")
                 ->setTime(00, 00);
 
@@ -68,19 +76,43 @@ class SendWhatsAppNotification extends Command
         }
     }
     private function sendWhatsAppNotification($child, $immunizationDate)
+=======
+                ->modify("+{$schedule->month} months");
+
+            // Hitung tanggal notifikasi (5 hari sebelum tanggal imunisasi)
+            $notificationDate = (clone $immunizationDate)->modify('-5 days');
+
+            if ($notificationDate->format('Y-m-d') === date('Y-m-d')) {
+                $this->sendWhatsAppNotification($child, $immunizationDate, $notificationDate);
+            }
+            sleep(1); // Add this line
+            exit; // 
+        }
+    }
+    private function sendWhatsAppNotification($child, $immunizationDate, $notificationDate)
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
     {
         $decryptNoWa = Crypt::decryptString($child->parent->no_wa);
         $phoneNumber = $decryptNoWa; // Asumsikan ada kolom no_wa di tabel child
         // dd($phoneNumber);
+<<<<<<< HEAD
         $message = "Reminder: Hari ini anak anda {$child->name}, memiliki jadwal imunisasi 😊.";
 
         // $notificationDate->setTime(01, 34, 00);
         // Mengonversi tanggal notifikasi menjadi UNIX timestamp
         // $scheduleTimestamp = $notificationDate->getTimestamp();
+=======
+        $message = "Reminder: Anak Anda, {$child->name}, memiliki jadwal imunisasi pada tanggal {$immunizationDate->format('Y-m-d')}(5 hari lagi)😊.";
+
+        $notificationDate->setTime(01, 34, 00);
+        // Mengonversi tanggal notifikasi menjadi UNIX timestamp
+        $scheduleTimestamp = $notificationDate->getTimestamp();
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
         // dd($notificationDate->format('Y-m-d H:i:s'));
         $data = [
             'target' => $phoneNumber,
             'message' => $message,
+<<<<<<< HEAD
             // 'schedule' => $scheduleTimestamp,
             'countryCode' => '62', // Optional
         ];
@@ -109,6 +141,9 @@ class SendWhatsAppNotification extends Command
             'target' => $phoneNumber,
             'message' => $message,
             // 'schedule' => $scheduleTimestamp,
+=======
+            'schedule' => $scheduleTimestamp,
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
             'countryCode' => '62', // Optional
         ];
         $response = Http::withHeaders([

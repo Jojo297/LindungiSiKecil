@@ -22,6 +22,15 @@ class ChildController extends Controller
         $now = new DateTime();
         $age = $now->diff($birthdate);
 
+<<<<<<< HEAD
+=======
+    protected function getAge($birthdate)
+    {
+        $birthdate = new DateTime($birthdate);
+        $now = new DateTime();
+        $age = $now->diff($birthdate);
+
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
         return [
             'years' => $age->y,
             'months' => $age->m
@@ -153,6 +162,7 @@ class ChildController extends Controller
     public function events2()
     {
         $events = [];
+<<<<<<< HEAD
 
         $idParent = auth()->guard('parent')->id();
 
@@ -164,6 +174,9 @@ class ChildController extends Controller
             })
             ->get();
         // $childSchedules = ChildSchedule::with(['child', 'schedule'])->get();
+=======
+        $childSchedules = ChildSchedule::with(['child', 'schedule'])->get();
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
 
         foreach ($childSchedules as $childSchedule) {
             $child = $childSchedule->child;
@@ -183,8 +196,14 @@ class ChildController extends Controller
                 $immunizationDate = (new DateTime($child->date_of_birth))
                     ->modify("+{$schedule->year} years")
                     ->modify("+{$schedule->month} months");
+<<<<<<< HEAD
                 // ->setTime(00, 00);
 
+=======
+
+                // // Hitung tanggal notifikasi (5 hari sebelum tanggal imunisasi)
+                // $notificationDate = (clone $immunizationDate)->modify('-5 days');
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
 
                 // Tambahkan event ke array
                 $events[] = [
@@ -196,6 +215,7 @@ class ChildController extends Controller
                     'status' => $childSchedule->status,
                     'vaccines' => $vaccineTypes, // Add vaccines data here
                 ];
+<<<<<<< HEAD
                 // // Hitung tanggal notifikasi (5 hari sebelum tanggal imunisasi)
                 // $notificationDate = (clone $immunizationDate)->modify('-1 days');
                 // $currentDateTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
@@ -209,12 +229,19 @@ class ChildController extends Controller
                 //     $this->sendWhatsAppNotification($child, $immunizationDate);
                 // } else {
                 //     dd("Notif not today");
+=======
+                // dd($notificationDate);
+                // Kirim notifikasi jika tanggal notifikasi adalah hari ini
+                // if ($notificationDate->format('Y-m-d') === date('Y-m-d')) {
+                //     $this->sendWhatsAppNotification($child, $immunizationDate, $notificationDate);
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
                 // }
             }
         }
 
         return response()->json($events);
     }
+<<<<<<< HEAD
     private function sendWhatsAppNotification($child, $immunizationDate)
     {
         $decryptNoWa = Crypt::decryptString($child->parent->no_wa);
@@ -242,6 +269,35 @@ class ChildController extends Controller
             return "Gagal mengirim notifikasi: " . $response->body();
         }
     }
+=======
+    // private function sendWhatsAppNotification($child, $immunizationDate, $notificationDate)
+    // {
+    //     $decryptNoWa = Crypt::decryptString($child->parent->no_wa);
+    //     $phoneNumber = $decryptNoWa; // Asumsikan ada kolom no_wa di tabel child
+    //     // dd($phoneNumber);
+    //     $message = "Reminder: Anak Anda, {$child->name}, memiliki jadwal imunisasi pada tanggal {$immunizationDate->format('Y-m-d')}(5 hari lagi)😊.";
+
+    //     $notificationDate->setTime(00, 37, 0);
+    //     // Mengonversi tanggal notifikasi menjadi UNIX timestamp
+    //     $scheduleTimestamp = $notificationDate->getTimestamp();
+    //     // dd($notificationDate->format('Y-m-d H:i:s'));
+    //     $data = [
+    //         'target' => $phoneNumber,
+    //         'message' => $message,
+    //         'schedule' => $scheduleTimestamp,
+    //         'countryCode' => '62', // Optional
+    //     ];
+    //     $response = Http::withHeaders([
+    //         'Authorization' => env('FONNTE_API_TOKEN'), // Ambil token dari environment
+    //     ])->post('https://api.fonnte.com/send', $data);
+
+    //     if ($response->successful()) {
+    //         return "Notifikasi terkirim: " . $response->body();
+    //     } else {
+    //         return "Gagal mengirim notifikasi: " . $response->body();
+    //     }
+    // }
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
     public function indexChildProfile(String $id)
     {
         $child = Child::find($id);

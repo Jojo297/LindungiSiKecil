@@ -13,7 +13,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $scheduler)
     {
+<<<<<<< HEAD
         $scheduler->command('app:send-whats-app-notification')->cron('* * * * *');
+=======
+        $scheduler->command('app:send-whats-app-notification')->everySecond();
+>>>>>>> 685b98893398611faa73093cefc748cbf9fbe821
         //  ->dailyAt('08:00');
     }
 
